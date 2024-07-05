@@ -7,6 +7,7 @@ const loginPharmacist = async (email, password) => {
         email,
         password,
       },
+      timeout: 30000,
     });
     if (
       res.data.status === "success" &&
