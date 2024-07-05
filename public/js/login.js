@@ -1,38 +1,43 @@
 const loginPharmacist = async (email, password) => {
   try {
-    const res = await axios({
+    const res = await fetch("http://127.0.0.1:3000/api/v1/users/login", {
       method: "POST",
-      url: "/api/v1/users/login",
-      data: {
-        email,
-        password,
+      headers: {
+        "Content-Type": "application/json",
       },
-      timeout: 30000,
+      body: JSON.stringify({ email, password }),
+      timeout: 30000, // Note: fetch does not support timeout natively
     });
-    if (
-      res.data.status === "success" &&
-      res.data.data.user.role === "pharmacist"
-    ) {
-      alert("Hi Pharmacist, You are logged in successfully");
+    if (res.ok) {
+      alert("Hi, You are logged in successfully");
       window.setTimeout(() => {
         location.assign("/pharmacistDashboard");
       }, 1500);
     }
-    if (
-      res.data.status === "success" &&
-      res.data.data.user.role === "manager"
-    ) {
-      alert("Hi Manager, You are logged in successfully");
-      window.setTimeout(() => {
-        location.assign("/managerDashboard");
-      }, 1500);
-    }
-    if (res.data.status === "success" && res.data.data.user.role === "seller") {
-      alert("Hi Seller, You are logged in successfully");
-      window.setTimeout(() => {
-        location.assign("/sellerDashboard");
-      }, 1500);
-    }
+    // if (
+    //   res.data.status === "success" &&
+    //   res.data.data.user.role === "pharmacist"
+    // ) {
+    //   alert("Hi Pharmacist, You are logged in successfully");
+    //   window.setTimeout(() => {
+    //     location.assign("/pharmacistDashboard");
+    //   }, 1500);
+    // }
+    // if (
+    //   res.data.status === "success" &&
+    //   res.data.data.user.role === "manager"
+    // ) {
+    //   alert("Hi Manager, You are logged in successfully");
+    //   window.setTimeout(() => {
+    //     location.assign("/managerDashboard");
+    //   }, 1500);
+    // }
+    // if (res.data.status === "success" && res.data.data.user.role === "seller") {
+    //   alert("Hi Seller, You are logged in successfully");
+    //   window.setTimeout(() => {
+    //     location.assign("/sellerDashboard");
+    //   }, 1500);
+    // }
   } catch (err) {
     console.log(err);
     alert(err.response.data.message);
