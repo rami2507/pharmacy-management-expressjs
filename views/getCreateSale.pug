@@ -1,0 +1,12 @@
+extends base
+block extraHead 
+    link(rel='stylesheet', href='/css/manageUsers.css')
+block content
+    .user-management
+        h1 Choose Type of Sale
+        ul.user-list
+            li 
+                a(href="/create-sale/free-sale", target="_blank") Free Sale
+            li 
+                a(href="/create-sale/ordonnance/types", target="_blank") Ordonnance
+

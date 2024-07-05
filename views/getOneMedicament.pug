@@ -1,0 +1,51 @@
+extends base
+
+block extraHead
+    link(rel='stylesheet', href='/css/oneDemande.css')
+
+block content
+    main
+        section.user-details
+            h2 Medicament Details
+            if action === 'delete'
+                table.user-table
+                    tbody
+                        tr
+                            td.label Name:</td>
+                            td.user-detail #{medicament.name}</td>
+                        tr
+                            td.label Price:</td>
+                            td.user-detail #{medicament.price}</td>
+                        tr
+                            td.label expDate:</td>
+                            td.user-detail #{medicament.expDate}</td>
+                        tr
+                            td.label stockQte:</td>
+                            td.user-detail #{medicament.stockQte}</td>
+            else
+                table.user-table
+                    tbody
+                        tr
+                            td.label Name:
+                            td.user-detail
+                                input#name.form__input(type='text', name='name', value=medicament.name)
+                        tr
+                            td.label Price:
+                            td.user-detail
+                                input#price.form__input(type='text', name='price', value=medicament.price)
+                        tr
+                            td.label expDate:
+                            td.user-detail
+                                input#expDate.form__input(type='text', name='expDate', value=medicament.expDate)
+                        tr
+                            td.label stockQte:
+                            td.user-detail
+                                input#stockQte.form__input(type='text', name='stockQte', value=medicament.stockQte)
+
+            .user-actions
+                if action === 'delete'
+                    button.btn.btn--delete DELETE MEDICAMENT
+                else
+                    button.btn.btn--accept MODIFY MEDICAMENT
+            script(src="/js/deleteModifyMedicament.js")
+

@@ -1,0 +1,41 @@
+extends base
+
+block extraHead
+    link(rel='stylesheet', href='/css/oneSupplier.css')
+
+block content
+    main
+        section.user-details
+            h2 Order Details
+                table.user-table
+                    tbody
+                        tr
+                            td.label Medicament Name:</td>
+                            td.user-detail #{order.medicamentName}</td>
+                        tr
+                            td.label Quantity:</td>
+                            td.user-detail #{order.qte}</td>
+            h2 Supplier Details
+                table.user-table
+                    tbody
+                        tr
+                            td.label First Name:</td>
+                            td.user-detail #{order.supplier.firstName}</td>
+                        tr
+                            td.label Last Name:</td>
+                            td.user-detail #{order.supplier.lastName}</td>
+                        tr
+                            td.label Email Address:</td>
+                            td.user-detail #{order.supplier.emailAddress}</td>
+                        tr
+                            td.label Billing Address:</td>
+                            td.user-detail #{order.supplier.billingAddress}</td>
+                        tr
+                            td.label Phone Number:</td>
+                            td.user-detail #{order.supplier.phone}</td>
+
+            .user-actions
+                button.btn.btn--delete DELETE ORDER
+                a(href=`/manage-orders/modify/${order._id}`).btn.btn--accept MODIFY ORDER
+            script(src="/js/deleteModifyOrder.js")
+

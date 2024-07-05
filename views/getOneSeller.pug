@@ -1,0 +1,29 @@
+extends base
+
+block extraHead
+    link(rel='stylesheet', href='/css/oneSupplier.css')
+
+block content
+    main
+        section.user-details
+            h2 Seller Details
+                table.user-table
+                    tbody
+                        tr
+                            td.label Name:</td>
+                            td.user-detail #{seller.name}</td>
+                        tr
+                            td.label Email:</td>
+                            td.user-detail #{seller.email}</td>
+                        tr
+                            td.label Billing Address:</td>
+                            td.user-detail #{seller.billingAddress}</td>
+                        tr
+                            td.label Phone Number:</td>
+                            td.user-detail #{seller.phone}</td>
+
+            .user-actions
+                button.btn.btn--delete DELETE SELLER
+                a(href=`/manage-sellers/modify/${seller._id}`).btn.btn--accept MODIFY SELLER
+            script(src="/js/deleteModifySeller.js")
+

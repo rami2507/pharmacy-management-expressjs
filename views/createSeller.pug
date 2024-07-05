@@ -1,0 +1,36 @@
+extends base
+
+block extraHead
+    link(rel='stylesheet', href='/css/createSupplier.css')
+
+block content
+    main
+        section.user-details
+            h2 Seller Details
+                table.user-table
+                    tbody
+                        tr
+                            td.label Name:
+                            td.user-detail
+                                input#name.form__input(type='text', name='name')
+                        tr
+                            td.label Email:
+                            td.user-detail
+                                input#email.form__input(type='text', name='email')
+                        tr
+                            td.label Billing Address:
+                            td.user-detail
+                                input#billingAddress.form__input(type='text', name='billingAddress')
+                        tr
+                            td.label Phone Number:
+                            td.user-detail
+                                input#phone.form__input(type='text', name='phone')
+                        tr
+                            td.label Password:
+                            td.user-detail
+                                input#password.form__input(type='password', name='password')
+
+            .user-actions
+                button.btn.btn--accept ADD SELLER
+            script(src="/js/createSeller.js")
+

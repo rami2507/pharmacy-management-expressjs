@@ -1,0 +1,32 @@
+extends base
+
+block extraHead
+    link(rel='stylesheet', href='/css/oneDemande.css')
+
+block content
+    main
+        section.user-details
+            h2 Modify Seller Details
+                table.user-table
+                    tbody
+                        tr
+                            td.label Name:
+                            td.user-detail
+                                input#sellerName.form__input(type='text', name='medicamentName', value=seller.name)
+                        tr
+                            td.label Email:
+                            td.user-detail
+                                input#sellerEmail.form__input(type='text', name='lastName', value=seller.email)
+                        tr
+                            td.label Billing Address:
+                            td.user-detail
+                                input#billing.form__input(type='text', name='lastName', value=seller.billingAddress)
+                        tr
+                            td.label Phone:
+                            td.user-detail
+                                input#phone.form__input(type='text', name='lastName', value=seller.phone)
+
+            .user-actions
+                button.btn.btn--accept MODIFY SELLER
+            script(src="/js/deleteModifySeller.js")
+

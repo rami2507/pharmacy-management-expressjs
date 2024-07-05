@@ -1,0 +1,33 @@
+extends base
+block content
+  main.main
+    .signup-form
+      h2.heading-secondary.ma-bt-lg CREATE AN ACCOUNT
+      form.form2
+        .form__group
+          label.form__label(for='nom') Name
+          input#name.form__input(type='text', placeholder='John Wick', required)
+        .form__group
+          label.form__label(for='email') Email Address
+          input#email.form__input(type='text', placeholder='name@example.com', required)
+        .form__group
+          label.form__label(for='billingAddress') Billing Address
+          input#billingAddress.form__input(type='text', placeholder='55th street ave, San Francisco, CA', required)
+        .form__group
+          label.form__label(for='phone') Phone Number
+          input#phone.form__input(type='text', placeholder='xx xxxxxxxx', required)
+        .form__group
+          label.form__label(for='typedecompte') Who you are? 
+          select#typedecompte.form__input(required)
+            option(value='-') -
+            option(value='pharmacist') Pharmacist
+            option(value='manager') Manager
+            option(value='seller') Seller
+        .form__group.ma-bt-md
+          label.form__label(for='password') Password
+          input#password.form__input(type='password', placeholder='••••••••', required, minlength='8')
+        .form__group
+          button.btn.btn--green.btn--signupp Sign Up
+      div.lastdivSignup
+        p.lastPInSignup Are you already a member?
+        a.loginInSignup(href='/login') Login

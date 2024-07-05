@@ -1,0 +1,18 @@
+extends base
+
+block extraHead 
+    link(rel='stylesheet', href='/css/manageSuppliers.css')
+
+block content
+    table
+        thead
+            tr
+                th Email
+                th 
+                    a(href='/manage-sellers/add-seller', target="_blank") ➕ ADD A NEW SELLER
+        tbody
+            each seller in sellers
+                tr
+                    td= seller.email
+                    td
+                        a.modifyMedicament(href=`/manage-sellers/${seller._id}`, target="_blank") VIEW SELLER

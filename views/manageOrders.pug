@@ -1,0 +1,18 @@
+extends base
+
+block extraHead 
+    link(rel='stylesheet', href='/css/manageSuppliers.css')
+
+block content
+    table
+        thead
+            tr
+                th ID
+                th 
+                    a(href='/manage-orders/make-order', target="_blank") ➕ MAKE A NEW ORDER
+        tbody
+            each order in orders
+                tr
+                    td= order._id
+                    td
+                        a.modifyMedicament(href=`/manage-orders/${order._id}`, target="_blank") VIEW ORDER

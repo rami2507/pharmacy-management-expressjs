@@ -1,0 +1,36 @@
+extends base
+
+block extraHead
+    link(rel='stylesheet', href='/css/createSupplier.css')
+
+block content
+    main
+        section.user-details
+            h2 Supplier Details
+                table.user-table
+                    tbody
+                        tr
+                            td.label First Name:
+                            td.user-detail
+                                input#firstName.form__input(type='text', name='firstName')
+                        tr
+                            td.label Last Name:
+                            td.user-detail
+                                input#lastName.form__input(type='text', name='lastName')
+                        tr
+                            td.label Email Address:
+                            td.user-detail
+                                input#emailAddress.form__input(type='text', name='emailAddress')
+                        tr
+                            td.label Blling Address:
+                            td.user-detail
+                                input#billingAddress.form__input(type='text', name='billingAddress')
+                        tr
+                            td.label Phone:
+                            td.user-detail
+                                input#phone.form__input(type='text', name='phone')
+
+            .user-actions
+                button.btn.btn--accept ADD SUPPLIER
+            script(src="/js/createSupplier.js")
+

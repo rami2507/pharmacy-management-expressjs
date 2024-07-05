@@ -1,0 +1,12 @@
+extends base
+block extraHead 
+    link(rel='stylesheet', href='/css/manageUsers.css')
+block content
+    .user-management
+        h1 Manage Stock
+        ul.user-list
+            li 
+                a(href="/manage-medicaments/all-medicaments", target="_blank") All Medicaments
+            li 
+                a(href="/manage-medicaments/create-medicament", target="_blank") Add New Medicament
+

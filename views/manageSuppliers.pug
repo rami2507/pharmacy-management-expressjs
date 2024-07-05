@@ -1,0 +1,20 @@
+extends base
+
+block extraHead 
+    link(rel='stylesheet', href='/css/manageSuppliers.css')
+
+block content
+    table
+        thead
+            tr
+                th First Name
+                th Email
+                th 
+                    a(href='/manage-suppliers/add-supplier', target="_blank") ➕ ADD A NEW SUPPLIER
+        tbody
+            each supplier in suppliers
+                tr
+                    td= supplier.firstName
+                    td= supplier.emailAddress
+                    td
+                        a.modifyMedicament(href=`/manage-suppliers/${supplier._id}`, target="_blank") VIEW SUPPLIER

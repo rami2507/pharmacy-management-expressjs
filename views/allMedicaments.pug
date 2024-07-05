@@ -1,0 +1,23 @@
+extends base
+block extraHead 
+  link(rel='stylesheet', href='/css/allUsers.css')
+
+block content
+  table
+    thead
+      th Medicament Name
+      th Price
+      th Expiration Date
+      th Stock Quantity
+      th Par Ordonnance
+    tbody
+      each medicament in medicaments
+        tr
+          td= medicament.name
+          td= medicament.price
+          td= medicament.expDate
+          td= medicament.stockQte
+          td= medicament.parOrdonnance
+          td
+            a.deleteMedicament(href=`/manage-medicaments/all-medicaments/delete/${medicament._id}`, target="_blank") DELETE MEDICAMENT
+            a.modifyMedicament(href=`/manage-medicaments/all-medicaments/modify/${medicament._id}`, target="_blank") MODIFY MEDICAMENT

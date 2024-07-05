@@ -1,0 +1,16 @@
+extends base
+block extraHead
+  link(rel='stylesheet', href='/css/adminDashboard.css')
+block content
+  main.main
+    if user && user.role === 'seller'
+        .sidebar
+            ul
+                li
+                    //- a(href="/create-sale", target="_blank") Create a Free Sale
+                    a(href="/sales", target="_blank") Create a Detailed Sale
+
+        .content
+            h1 WELCOME TO THE SELLER PANEL 
+    else
+      h1 Your are not logged it, please login to get access

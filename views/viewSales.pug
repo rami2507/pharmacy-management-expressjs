@@ -1,0 +1,22 @@
+extends base
+block extraHead 
+  link(rel='stylesheet', href='/css/allUsers.css')
+
+block content
+  table
+    thead
+      th Medicament Name
+      th Quantity
+      th Date
+      th Type of Sale
+    tbody
+      each sale in sales
+        tr
+          td= sale.medName
+          td= sale.qte
+          td= sale.date
+          if sale.typeOfSale === 'gros'
+            td= sale.typeOfSale
+              //- a(href=`/details`, target="_blank") SALE DETAILS
+          else 
+            td= sale.typeOfSale

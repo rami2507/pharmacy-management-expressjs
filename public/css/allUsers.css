@@ -1,0 +1,43 @@
+/* Overall table styling */
+table {
+  border-collapse: collapse; /* Remove double borders between cells */
+  width: 100%; /* Make the table fill the available width */
+}
+
+/* Table headers */
+table thead th {
+  background-color: #eee; /* Light background for headers */
+  padding: 10px; /* Add some padding for readability */
+  text-align: left; /* Left-align content within headers */
+}
+
+/* Table body */
+table tbody td {
+  border: 1px solid #ccc; /* Add borders to table cells */
+  padding: 10px; /* Add padding for better spacing */
+  font-size: 16px;
+  line-height: 1.5;
+  color: #333;
+}
+
+/* Action link (View Problem) */
+
+.deleteMedicament {
+  text-decoration: none;
+  color: #fff;
+  background-color: red;
+  text-decoration: none;
+  padding: 5px 10px;
+  border-radius: 5px;
+  margin-right: 10px;
+}
+
+.modifyMedicament {
+  text-decoration: none;
+  background-color: #2e8b57;
+  color: #fff;
+  text-decoration: none;
+  padding: 5px 10px;
+  border-radius: 5px;
+  margin-right: 10px;
+}

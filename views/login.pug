@@ -1,0 +1,19 @@
+extends base
+block content
+  main.main
+    div.login-form
+            h2.heading-secondary.ma-bt-lg Log into your account
+            form.form
+              div.form__group
+                label.form__label(for="nomdutilisateur") Email Address
+                input#email.form__input(type="text", placeholder="john@example.com", required)
+              div.form__group.ma-bt-md
+                label.form__label(for="motdepass") Password
+                input#password.form__input(type="password", placeholder="••••••••", required, minlength="8")
+              div.form__group.lst--grp
+                button.btn.btn--green.login--btn Login
+              div.last--div
+                p Forgot your password? 
+                  a(href="/forgotpassword") Reset Now
+                p Don't have an account yet? 
+                  a(href="/signup") Join Now

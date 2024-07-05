@@ -1,0 +1,12 @@
+extends base
+block extraHead 
+    link(rel='stylesheet', href='/css/manageUsers.css')
+block content
+    .user-management
+        h1 Choose Type of Ordonnance Sale
+        ul.user-list
+            li 
+                a(href="/create-sale/ordonnance-sale/ordinaire", target="_blank") Ordinaire
+            li 
+                a(href="/create-sale/ordonnance", target="_blank") QR Code
+

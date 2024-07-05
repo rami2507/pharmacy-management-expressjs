@@ -1,0 +1,35 @@
+extends base
+
+block extraHead
+    link(rel='stylesheet', href='/css/oneDemande.css')
+
+block content
+    main
+        section.user-details
+
+            table.user-table
+                tbody
+                    //- tr
+                    //-     td.label How many medicaments?:
+                    //-     td.user-detail
+                    //-         input#medicamentNumber.form__input(type='text', name='medicamentNumber')
+                    tr
+                        .form__group
+                            label.form__label(for='typedecompte') How many medicaments
+                            select#medicamentNumber.form__input(required)
+                                option(value='-') -
+                                option(value='1') 1
+                                option(value='2') 2
+                                option(value='3') 3
+                                option(value='4') 4
+                                option(value='5') 5
+                                option(value='6') 6
+                                option(value='7') 7
+                                option(value='8') 8
+                                option(value='9') 9
+
+            .user-actions
+                a#nextLink.btn.btn--accept(href=`/create-sale/free-sale/${value}`) NEXT
+
+        script(src='/js/getFreeSale.js')
+

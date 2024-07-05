@@ -1,0 +1,52 @@
+/* Overall table styling */
+table.pending-users-table {
+  border-collapse: collapse;
+  width: 100%;
+}
+
+/* Table headers */
+table.pending-users-table th {
+  background-color: #eee;
+  color: #999;
+  padding: 10px;
+  text-align: left;
+}
+
+/* Table body */
+table.pending-users-table td {
+  border: 1px solid #ccc;
+  padding: 10px;
+  font-size: 16px;
+  line-height: 1.5;
+  color: #333;
+}
+
+/* Action link (View User) */
+table.pending-users-table td a {
+  text-decoration: none;
+  color: #fff;
+  background-color: #2e8b57;
+  padding: 5px 10px;
+  border-radius: 5px;
+}
+
+/* No results section */
+.no-results {
+  margin-top: 20px;
+  margin-bottom: 20px;
+  text-align: center;
+}
+
+.no-results h2 {
+  color: red;
+}
+
+.no-results a.btn {
+  color: #fff;
+  background-color: #2e8b57;
+  padding: 8px 16px;
+  border-radius: 5px;
+  text-decoration: none;
+  display: inline-block;
+  margin-top: 10px;
+}

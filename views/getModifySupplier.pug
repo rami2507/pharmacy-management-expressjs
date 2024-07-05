@@ -1,0 +1,36 @@
+extends base
+
+block extraHead
+    link(rel='stylesheet', href='/css/oneDemande.css')
+
+block content
+    main
+        section.user-details
+            h2 Modify Supplier Details
+                table.user-table
+                    tbody
+                        tr
+                            td.label First Name:
+                            td.user-detail
+                                input#firstName.form__input(type='text', name='firstName', value=supplier.firstName)
+                        tr
+                            td.label Last Name:
+                            td.user-detail
+                                input#lastName.form__input(type='text', name='lastName', value=supplier.lastName)
+                        tr
+                            td.label Email Address:
+                            td.user-detail
+                                input#emailAddress.form__input(type='text', name='emailAddress', value=supplier.emailAddress)
+                        tr
+                            td.label Billing Address:
+                            td.user-detail
+                                input#billingAddress.form__input(type='text', name='billingAddress', value=supplier.billingAddress)
+                        tr
+                            td.label Phone Number:
+                            td.user-detail
+                                input#phone.form__input(type='text', name='phone', value=supplier.phone)
+
+            .user-actions
+                button.btn.btn--accept MODIFY MEDICAMENT
+            script(src="/js/deleteModifySupplier.js")
+

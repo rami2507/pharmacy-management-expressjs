@@ -1,0 +1,26 @@
+extends base 
+
+block extraHead
+    link(rel='stylesheet', href='/css/oneDemande.css')
+
+block content
+    main
+        section.user-details
+            each medicament in medicaments
+                div.medicament
+                    h2 Medicament Details
+                        table.user-table
+                            tbody
+                                tr
+                                    td.label Medicament Name:
+                                    td.user-detail
+                                        input#name.form__input(type='text', name='name')
+                                tr
+                                    td.label Quantity:
+                                    td.user-detail
+                                        input#qte.form__input(type='text', name='qte')
+
+            .user-actions
+                button.btn.btn--accept CREATE A SALE
+            script(src="/js/createSale.js")
+

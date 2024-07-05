@@ -1,0 +1,14 @@
+extends base
+block extraHead
+  link(rel='stylesheet', href='/css/adminDashboard.css')
+block content
+  main.main
+    if user && user.role === 'pharmacist'
+      .sidebar
+        ul
+          li
+            a(href="/manage-medicaments", target="_blank") Manage Medicaments
+      .content
+        h1 WELCOME TO THE PHARMACIST PANEL 
+    else
+      h1 Your are not logged it, please login to get access

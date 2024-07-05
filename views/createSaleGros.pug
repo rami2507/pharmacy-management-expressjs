@@ -1,0 +1,36 @@
+extends base
+
+block extraHead
+    link(rel='stylesheet', href='/css/createSupplier.css')
+
+block content
+    main
+        section.user-details
+            h2 Medicament Details
+                table.user-table
+                    tbody
+                        tr
+                            td.label Medicament Name:
+                            td.user-detail
+                                input#medName.form__input(type='text', name='medName')
+                        tr
+                            td.label Quantity:
+                            td.user-detail
+                                input#qte.form__input(type='text', name='qte')
+                        tr
+                            td.label Buyer Pharmacy Name:
+                            td.user-detail
+                                input#phName.form__input(type='text', name='phName')
+                        tr
+                            td.label Buyer Pharmacy Address:
+                            td.user-detail
+                                input#phAddress.form__input(type='text', name='phAddress')
+                        tr
+                            td.label Buyer Pharmacy Phone:
+                            td.user-detail
+                                input#phone.form__input(type='text', name='phone')
+
+            .user-actions
+                button.btn.btn--accept CREATE SALE
+            script(src="/js/createGrosSale.js")
+

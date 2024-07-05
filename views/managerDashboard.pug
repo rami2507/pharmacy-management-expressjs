@@ -1,0 +1,24 @@
+extends base
+block extraHead
+  link(rel='stylesheet', href='/css/adminDashboard.css')
+block content
+  main.main
+    if user && user.role === 'manager'
+        .sidebar
+            ul
+                li
+                    a(href="/manage-stock", target="_blank") Manage stock
+                li
+                    a(href="/manage-orders", target="_blank") Med Orders
+                li
+                    a(href="/manage-suppliers", target="_blank") Manage Supplier
+                li
+                    a(href="/manage-sellers", target="_blank") Manage Sellers
+                li
+                    a(href="/sales", target="_blank") Create a Detailed Sale
+                li
+                    a(href="/sale-gros", target="_blank") Create a "Gros" Sale
+        .content
+            h1 WELCOME TO THE MANAGER PANEL 
+    else
+      h1 Your are not logged it, please login to get access

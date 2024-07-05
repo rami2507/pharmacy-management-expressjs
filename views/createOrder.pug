@@ -1,0 +1,31 @@
+extends base
+
+block extraHead
+    link(rel='stylesheet', href='/css/createSupplier.css')
+
+block content
+    main
+        section.user-details
+            h2 Order Details
+                table.user-table
+                    tbody
+                        tr
+                            td.label Medicament Name:
+                            td.user-detail
+                                input#medicamentName.form__input(type='text', name='medicamentName')
+                        tr
+                            td.label Quantity:
+                            td.user-detail
+                                input#qte.form__input(type='text', name='qte')
+                        tr
+                            .form__group
+                                label.form__label(for='typedecompte') Supplier
+                                select#supplier.form__input(required)
+                                    option(value='-') -
+                                    each supplier in suppliers
+                                        option(value=`${supplier._id}`)= supplier.emailAddress
+
+            .user-actions
+                button.btn.btn--accept CREATE ORDER
+            script(src="/js/createOrder.js")
+

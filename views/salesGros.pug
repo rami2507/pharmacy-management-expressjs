@@ -1,0 +1,12 @@
+extends base
+block extraHead 
+    link(rel='stylesheet', href='/css/manageUsers.css')
+block content
+    .user-management
+        h1 Choose Type of Sale
+        ul.user-list
+            li 
+                a(href="/view-sales", target="_blank") View My Sales
+            li 
+                a(href="/create-sale-gros", target="_blank") Make a New Sale
+

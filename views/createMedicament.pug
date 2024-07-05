@@ -1,0 +1,40 @@
+extends base
+
+block extraHead
+    link(rel='stylesheet', href='/css/oneDemande.css')
+
+block content
+    main
+        section.user-details
+            h2 Medicament Details
+                table.user-table
+                    tbody
+                        tr
+                            td.label Name:
+                            td.user-detail
+                                input#name.form__input(type='text', name='name')
+                        tr
+                            td.label Price:
+                            td.user-detail
+                                input#price.form__input(type='text', name='price')
+                        tr
+                            td.label expDate:
+                            td.user-detail
+                                input#expDate.form__input(type='text', name='expDate')
+                        tr
+                            td.label stockQte:
+                            td.user-detail
+                                input#stockQte.form__input(type='text', name='stockQte')
+                        tr
+                            td
+                                .form__group
+                                    label.form__label(for='typedecompte') Par Ordonnance
+                                    select#checkOrdonnonce.form__input(required)
+                                        option(value='-') -
+                                        option(value='true') True
+                                        option(value='false') False
+
+            .user-actions
+                button.btn.btn--accept ADD MEDICAMENT
+            script(src="/js/createMedicament.js")
+
