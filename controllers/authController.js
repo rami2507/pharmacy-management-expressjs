@@ -1,11 +1,11 @@
 const AppError = require("../utils/AppError");
-const catchAsync = require("../utils/catchAsync");
+const asyncHandler = require("express-async-handler");
 const User = require("./../models/User");
 const bcrypt = require("bcrypt");
 const jwt = require("jsonwebtoken");
 const { promisify } = require("util");
 
-exports.signup = catchAsync(async (req, res, next) => {
+exports.signup = asyncHandler(async (req, res, next) => {
   let user = req.body;
   user.password = await bcrypt.hash(user.password, 12);
   const newUser = await User.create(user);
@@ -18,7 +18,7 @@ exports.signup = catchAsync(async (req, res, next) => {
   });
 });
 
-exports.login = catchAsync(async (req, res, next) => {
+exports.login = asyncHandler(async (req, res, next) => {
   const { email, password } = req.body;
   if (!email || !password) {
     return next(new AppError("Please specify username and password", 404));
@@ -32,8 +32,8 @@ exports.login = catchAsync(async (req, res, next) => {
     return next(new AppError("username or password is not correct", 404));
   }
   // SIGN TOKEN
-  const token = jwt.sign({ userId: user._id }, "RAmi2002", {
-    expiresIn: "900000000000000",
+  const token = jwt.sign({ userId: user._id }, process.env.JWT_SECRET, {
+    expiresIn: "24d",
   });
   // SEND TOKEN AS A COOKIE
   res.cookie("jwt", token);
@@ -47,7 +47,7 @@ exports.login = catchAsync(async (req, res, next) => {
   });
 });
 
-exports.protect = catchAsync(async (req, res, next) => {
+exports.protect = asyncHandler(async (req, res, next) => {
   // 1) Getting Token And Check If It's There
   let token;
   if (
@@ -63,7 +63,7 @@ exports.protect = catchAsync(async (req, res, next) => {
       new AppError("Your are not logged in! Please login to get access", 401)
     );
   // 2) Validate token
-  const decoded = await promisify(jwt.verify)(token, "RAmi2002");
+  const decoded = await promisify(jwt.verify)(token, process.env.JWT_SECRET);
   // 3) Check If User Still Exist
   const currentUser = await User.findById(decoded.userId);
   if (!currentUser) {
@@ -77,14 +77,17 @@ exports.protect = catchAsync(async (req, res, next) => {
 });
 
 // ONLY FOR RENDERED PAGES ,, NO ERRORS
-exports.isLoggedIn = catchAsync(async (req, res, next) => {
+exports.isLoggedIn = asyncHandler(async (req, res, next) => {
   // 1) Getting Token And Check If It's There
   let token;
   if (req.cookies.jwt) {
     token = req.cookies.jwt;
     try {
       // 2) Validate token
-      const decoded = await promisify(jwt.verify)(token, "RAmi2002");
+      const decoded = await promisify(jwt.verify)(
+        token,
+        process.env.JWT_SECRET
+      );
       // 3) Check If User Still Exists
       const currentUser = await User.findById(decoded.userId);
       if (!currentUser) {
@@ -101,7 +104,7 @@ exports.isLoggedIn = catchAsync(async (req, res, next) => {
   next();
 });
 
-exports.logout = catchAsync(async (req, res) => {
+exports.logout = asyncHandler(async (req, res) => {
   res.cookie("jwt", "loggedout", {
     expires: new Date(Date.now() + 10 * 1000), // Set expiration time to 10 seconds from now
     httpOnly: true,

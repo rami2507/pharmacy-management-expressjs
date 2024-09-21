@@ -1,10 +1,10 @@
 const AppError = require("../utils/AppError");
-const catchAsync = require("../utils/catchAsync");
+const asyncHandler = require("express-async-handler");
 const User = require("./../models/User");
 const bcrypt = require("bcrypt");
 
 // GET ALL USERS
-exports.getAllUsers = catchAsync(async (req, res, next) => {
+exports.getAllUsers = asyncHandler(async (req, res, next) => {
   const users = await User.find();
   res.status(200).json({
     status: "success",
@@ -16,7 +16,7 @@ exports.getAllUsers = catchAsync(async (req, res, next) => {
 });
 
 // DELETE ALL USERS
-exports.deleteAllUsers = catchAsync(async (req, res, next) => {
+exports.deleteAllUsers = asyncHandler(async (req, res, next) => {
   await User.deleteMany();
   res.status(204).json({
     status: "success",
@@ -25,7 +25,7 @@ exports.deleteAllUsers = catchAsync(async (req, res, next) => {
 });
 
 // DELETE A USER
-exports.deleteUser = catchAsync(async (req, res, next) => {
+exports.deleteUser = asyncHandler(async (req, res, next) => {
   await User.findByIdAndDelete(req.params.id);
   res.status(204).json({
     status: "success",
@@ -34,7 +34,7 @@ exports.deleteUser = catchAsync(async (req, res, next) => {
 });
 
 // MODIFY A USER
-exports.modifyUser = catchAsync(async (req, res, next) => {
+exports.modifyUser = asyncHandler(async (req, res, next) => {
   const user = await User.findById(req.params.id);
   if (!user) {
     return next(new AppError("No user found with that id", 404));
@@ -50,7 +50,7 @@ exports.modifyUser = catchAsync(async (req, res, next) => {
 });
 
 // CREATE SELLER
-exports.createSeller = catchAsync(async (req, res) => {
+exports.createSeller = asyncHandler(async (req, res) => {
   const sellerData = {
     name: req.body.name,
     email: req.body.email,

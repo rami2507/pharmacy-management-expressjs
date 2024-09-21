@@ -1,9 +1,9 @@
 const Order = require("../models/Order");
 const AppError = require("../utils/AppError");
-const catchAsync = require("../utils/catchAsync");
+const asyncHandler = require("express-async-handler");
 
 // CREATE AN ORDER
-exports.createOrder = catchAsync(async (req, res, next) => {
+exports.createOrder = asyncHandler(async (req, res, next) => {
   const orderDetails = {
     medicamentName: req.body.medicamentName,
     qte: req.body.qte,
@@ -23,7 +23,7 @@ exports.createOrder = catchAsync(async (req, res, next) => {
 });
 
 // GET ALL ORDER
-exports.getAllOrders = catchAsync(async (req, res) => {
+exports.getAllOrders = asyncHandler(async (req, res) => {
   const orders = await Order.find().populate("supplier");
   res.status(200).json({
     status: "success",
@@ -35,7 +35,7 @@ exports.getAllOrders = catchAsync(async (req, res) => {
 });
 
 // GET ONE ORDER
-exports.getOrder = catchAsync(async (req, res, next) => {
+exports.getOrder = asyncHandler(async (req, res, next) => {
   const order = await Order.findById(req.params.id);
   if (!order) {
     return next(
@@ -51,7 +51,7 @@ exports.getOrder = catchAsync(async (req, res, next) => {
 });
 
 // UPDATE AN ORDER
-exports.modifyOrder = catchAsync(async (req, res, next) => {
+exports.modifyOrder = asyncHandler(async (req, res, next) => {
   const modifiedOrder = await Order.findByIdAndUpdate(req.params.id, req.body);
   if (!modifiedOrder) {
     return next(new AppError("There is an error updating the order"));

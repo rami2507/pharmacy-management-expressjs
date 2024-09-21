@@ -3,6 +3,7 @@ const Medicament = require("./../models/Medicament");
 const Supplier = require("./../models/Supplier");
 const Order = require("./../models/Order");
 const Sale = require("../models/Sale");
+const asyncHandler = require("express-async-handler");
 
 exports.getSignup = (req, res) => {
   res.status(200).render("signup");
@@ -24,18 +25,18 @@ exports.getManageDocuments = (req, res) => {
   res.status(200).render("manageMedicaments");
 };
 
-exports.getAllMedicaments = async (req, res) => {
+exports.getAllMedicaments = asyncHandler(async (req, res) => {
   const medicaments = await Medicament.find();
   res.status(200).render("allMedicaments", {
     medicaments,
   });
-};
+});
 
-exports.getOneMedicament = async (req, res) => {
+exports.getOneMedicament = asyncHandler(async (req, res) => {
   const medicament = await Medicament.findById(req.params.id);
   const action = req.url.split("/")[3];
   res.status(200).render("getOneMedicament", { medicament, action });
-};
+});
 
 exports.createOneMedicament = (req, res) => {
   res.status(200).render("createMedicament");
@@ -49,63 +50,63 @@ exports.getManageStock = (req, res) => {
   res.status(200).render("manageStock");
 };
 
-exports.getManageSuppliers = async (req, res) => {
+exports.getManageSuppliers = asyncHandler(async (req, res) => {
   const suppliers = await Supplier.find();
   res.status(200).render("manageSuppliers", { suppliers });
-};
+});
 
-exports.getOneSupplier = async (req, res) => {
+exports.getOneSupplier = asyncHandler(async (req, res) => {
   const supplierID = req.params.id;
   const supplier = await Supplier.findById(supplierID);
   console.log(supplier);
   res.status(200).render("getOneSupplier", { supplier });
-};
+});
 
-exports.getModifySupplier = async (req, res) => {
+exports.getModifySupplier = asyncHandler(async (req, res) => {
   const supplierID = req.params.id;
   const supplier = await Supplier.findById(supplierID);
   res.status(200).render("getModifySupplier", { supplier });
-};
+});
 
 exports.getCreateSupplier = (req, res) => {
   res.status(200).render("createSupplier");
 };
 
-exports.getManageSellers = async (req, res) => {
+exports.getManageSellers = asyncHandler(async (req, res) => {
   const sellers = await User.find({ role: "seller" });
   res.status(200).render("manageSellers", { sellers });
-};
+});
 
-exports.getOneSeller = async (req, res) => {
+exports.getOneSeller = asyncHandler(async (req, res) => {
   const seller = await User.findById(req.params.id);
   res.status(200).render("getOneSeller", { seller });
-};
+});
 
 exports.getCreateSeller = (req, res) => {
   res.status(200).render("createSeller");
 };
 
-exports.getManageOrders = async (req, res) => {
+exports.getManageOrders = asyncHandler(async (req, res) => {
   const orders = await Order.find();
   res.status(200).render("manageOrders", { orders });
-};
+});
 
-exports.getOneOrder = async (req, res) => {
+exports.getOneOrder = asyncHandler(async (req, res) => {
   const order = await Order.findById(req.params.id).populate("supplier");
   res.status(200).render("getOneOrder", { order });
-};
+});
 
-exports.getCreateOrder = async (req, res) => {
+exports.getCreateOrder = asyncHandler(async (req, res) => {
   const suppliers = await Supplier.find();
   res.status(200).render("createOrder", { suppliers });
-};
+});
 
-exports.getModifyOrder = async (req, res) => {
+exports.getModifyOrder = asyncHandler(async (req, res) => {
   const suppliers = await Supplier.find();
   const order = await Order.findById(req.params.id);
   console.log(order);
   res.status(200).render("getModifyOrder", { suppliers, order });
-};
+});
 
 exports.getSellerDashboard = (req, res) => {
   res.status(200).render("sellerDashboard");
@@ -133,15 +134,15 @@ exports.sales = (req, res) => {
   res.status(200).render("sales");
 };
 
-exports.viewSales = async (req, res) => {
+exports.viewSales = asyncHandler(async (req, res) => {
   const sales = await Sale.find();
   res.status(200).render("viewSales", { sales });
-};
+});
 
-exports.getCloseOrdonnanceSale = async (req, res) => {
+exports.getCloseOrdonnanceSale = asyncHandler(async (req, res) => {
   const medicaments = req.params.data.split("&");
   res.status(200).render("makeOrdonnanceSale", { medicaments });
-};
+});
 
 exports.getOrdonnanceTypes = (req, res) => {
   res.status(200).render("ordonnanceTypes");
@@ -165,7 +166,7 @@ exports.createSaleGros = (req, res) => {
   res.status(200).render("createSaleGros");
 };
 
-exports.getModifySeller = async (req, res) => {
+exports.getModifySeller = asyncHandler(async (req, res) => {
   const seller = await User.findById(req.params.id);
   res.status(200).render("getModifySeller", { seller });
-};
+});

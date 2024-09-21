@@ -1,8 +1,8 @@
-const catchAsync = require("../utils/catchAsync");
+const asyncHandler = require("express-async-handler");
 const Medicament = require("./../models/Medicament");
 
 // GET ALL MEDICAMENTS
-exports.getAllMedicaments = catchAsync(async (req, res) => {
+exports.getAllMedicaments = asyncHandler(async (req, res) => {
   const medicaments = await Medicament.find();
   res.status(200).json({
     status: "succcess",
@@ -12,7 +12,7 @@ exports.getAllMedicaments = catchAsync(async (req, res) => {
 });
 
 // CREATE A MEDICAMENT
-exports.createMedicament = catchAsync(async (req, res) => {
+exports.createMedicament = asyncHandler(async (req, res) => {
   const newMedicament = await Medicament.create(req.body);
   res.status(201).json({
     status: "success",
@@ -23,7 +23,7 @@ exports.createMedicament = catchAsync(async (req, res) => {
 });
 
 // DELETE ALL MEDICAMENTS
-exports.deleteAllMedicaments = catchAsync(async (req, res) => {
+exports.deleteAllMedicaments = asyncHandler(async (req, res) => {
   await Medicament.deleteMany();
   res.status(204).json({
     status: "success",
@@ -32,7 +32,7 @@ exports.deleteAllMedicaments = catchAsync(async (req, res) => {
 });
 
 // DELETE ONE MEDICAMENT
-exports.deleteOneMedicament = catchAsync(async (req, res) => {
+exports.deleteOneMedicament = asyncHandler(async (req, res) => {
   await Medicament.findByIdAndDelete(req.params.id);
   res.status(204).json({
     status: "success",
@@ -41,7 +41,7 @@ exports.deleteOneMedicament = catchAsync(async (req, res) => {
 });
 
 // MODIFY MEDICAMENT
-exports.modifyMedicament = catchAsync(async (req, res) => {
+exports.modifyMedicament = asyncHandler(async (req, res) => {
   const medicamentModified = await Medicament.findByIdAndUpdate(
     req.params.id,
     req.body

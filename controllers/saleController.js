@@ -1,11 +1,11 @@
 const AppError = require("../utils/AppError");
-const catchAsync = require("../utils/catchAsync");
+const asyncHandler = require("express-async-handler");
 const Medicament = require("./../models/Medicament");
 const Sale = require("./../models/Sale");
 const qr = require("qrcode");
 
 // CREATE DETAILED SALE
-exports.createSale = catchAsync(async (req, res, next) => {
+exports.createSale = asyncHandler(async (req, res, next) => {
   // GET MEDICAMENTS FROM THE USER
   const { medicaments } = req.body;
 
@@ -75,7 +75,7 @@ exports.createSale = catchAsync(async (req, res, next) => {
 });
 
 // CREATE SALE 'GROS'
-exports.createSaleGros = catchAsync(async (req, res, next) => {
+exports.createSaleGros = asyncHandler(async (req, res, next) => {
   let totalPrice = 0;
   // GET MEDICAMENTS FROM THE USER
   let date = new Date(Date.now());
@@ -118,7 +118,7 @@ exports.createSaleGros = catchAsync(async (req, res, next) => {
   });
 });
 
-exports.getAllSales = catchAsync(async (req, res) => {
+exports.getAllSales = asyncHandler(async (req, res) => {
   const sales = await Sale.find();
   res.status(200).json({
     status: "success",
@@ -127,7 +127,7 @@ exports.getAllSales = catchAsync(async (req, res) => {
   });
 });
 
-exports.deleteAllSales = catchAsync(async (req, res) => {
+exports.deleteAllSales = asyncHandler(async (req, res) => {
   await Sale.deleteMany();
   res.status(204).json({
     status: "success",
@@ -135,7 +135,7 @@ exports.deleteAllSales = catchAsync(async (req, res) => {
   });
 });
 
-exports.createQrCodeSale = catchAsync(async (req, res) => {
+exports.createQrCodeSale = asyncHandler(async (req, res) => {
   const data = "http://127.0.0.1:4000/medicaments/name=pp,qte=2&name=x,qte=2";
 
   // Generate the QR code as a Data URL

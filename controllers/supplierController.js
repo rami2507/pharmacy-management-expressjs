@@ -1,9 +1,8 @@
-const AppError = require("../utils/AppError");
-const catchAsync = require("../utils/catchAsync");
+const asyncHandler = require("express-async-handler");
 const Supplier = require("./../models/Supplier");
 
 // ADD (CREATE) SUPPLIER
-exports.createSupplier = catchAsync(async (req, res) => {
+exports.createSupplier = asyncHandler(async (req, res) => {
   const newSupplier = await Supplier.create(req.body);
   res.status(201).json({
     status: "success",
@@ -15,7 +14,7 @@ exports.createSupplier = catchAsync(async (req, res) => {
 });
 
 // GET ALL Suppliers
-exports.getAllSuppliers = catchAsync(async (req, res, next) => {
+exports.getAllSuppliers = asyncHandler(async (req, res, next) => {
   const suppliers = await Supplier.find();
   res.status(200).json({
     status: "success",
@@ -27,7 +26,7 @@ exports.getAllSuppliers = catchAsync(async (req, res, next) => {
 });
 
 // DELETE ALL Suppliers
-exports.deleteAllSuppliers = catchAsync(async (req, res, next) => {
+exports.deleteAllSuppliers = asyncHandler(async (req, res, next) => {
   await Supplier.deleteMany();
   res.status(204).json({
     status: "success",
@@ -36,7 +35,7 @@ exports.deleteAllSuppliers = catchAsync(async (req, res, next) => {
 });
 
 // DELETE A Supplier
-exports.deleteSupplier = catchAsync(async (req, res, next) => {
+exports.deleteSupplier = asyncHandler(async (req, res, next) => {
   await Supplier.findByIdAndDelete(req.params.id);
   res.status(204).json({
     status: "success",
@@ -45,7 +44,7 @@ exports.deleteSupplier = catchAsync(async (req, res, next) => {
 });
 
 // MODIFY Supplier
-exports.modifySupplier = catchAsync(async (req, res, next) => {
+exports.modifySupplier = asyncHandler(async (req, res, next) => {
   const modifiedSupplier = await Supplier.findByIdAndUpdate(
     req.params.id,
     req.body
